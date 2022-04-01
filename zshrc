@@ -81,6 +81,10 @@ lazyload rvm -- 'export PATH=$RVM_ROOT/bin:$PATH
 lazyload pyenv -- 'export PATH=$PYENV_ROOT/bin:$PATH
     eval "$(pyenv init --path)"'
 
+lazyload goenv -- 'export GOENV_ROOT="$HOME/.goenv"
+    export PATH="$GOENV_ROOT/bin:$PATH"
+    eval "$(goenv init -)"'
+
 # ctrl+delete/backspace (del prev. word)
 bindkey '^[[3;5~' kill-word
 bindkey '^H' backward-kill-word
