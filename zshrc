@@ -16,6 +16,7 @@ alias pcd='percent_diff'
 alias pe='pyenv'
 alias peg='pyenv global'
 alias d='docker'
+alias gbrecent='git branch --sort=-committerdate | head'
 
 ZSH_THEME="supo"
 plugins=(git)
