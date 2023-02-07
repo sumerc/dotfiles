@@ -72,6 +72,15 @@ EOF
     echo %$result
 }
 
+function truncate_docker_logs()
+{
+    # the idea is nsenter runs in the same namespace with the docker VM and can
+    # $1 is containerID which can be retrieved via docker ps --no-trunc
+    # actually see the host filesystem that logs are saved
+    # For more info: https://github.com/justincormack/nsenter1
+    docker run -it --rm --privileged --pid=host alpine:edge nsenter -t 1 -m -u -n -i sh -c "cd /var/lib/docker/containers/$1/; ls -alh | grep $1; echo Truncating logs...; truncate -s 0 $1-json.log; ls -alh | grep $1"
+}
+
 # lazyloaded commands to improve zsh startup time
 lazyload nvm -- '[ -s "$NVM_ROOT/nvm.sh" ] && \. "$NVM_ROOT/nvm.sh"  # This loads nvm
     [ -s "$NVM_ROOT/bash_completion" ] && \. "$NVM_ROOT/bash_completion"  # This loads nvm bash_completion'
