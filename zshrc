@@ -81,6 +81,13 @@ function truncate_docker_logs()
     docker run -it --rm --privileged --pid=host alpine:edge nsenter -t 1 -m -u -n -i sh -c "cd /var/lib/docker/containers/$1/; ls -alh | grep $1; echo Truncating logs...; truncate -s 0 $1-json.log; ls -alh | grep $1"
 }
 
+function docker_vm_shell()
+{
+    # On MacOS, Docker runs on a Linux VM. This container runs with the same
+    # namespace of the VM and access the Linux host.
+    docker run -it --rm --privileged --pid=host alpine:edge nsenter -t 1 -m -u -n -i sh
+}
+
 # lazyloaded commands to improve zsh startup time
 lazyload nvm -- '[ -s "$NVM_ROOT/nvm.sh" ] && \. "$NVM_ROOT/nvm.sh"  # This loads nvm
     [ -s "$NVM_ROOT/bash_completion" ] && \. "$NVM_ROOT/bash_completion"  # This loads nvm bash_completion'
