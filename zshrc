@@ -29,6 +29,7 @@ export GOROOT="/usr/local/go"
 export WORKDIR="$HOME/Desktop/p/"
 export GIT_EDITOR="code --wait" # wait needed for rebase
 export VSCODE_FOLDER="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # modify path
 export PATH=$RVM_ROOT/bin:$PYENV_ROOT/bin:$PATH:$GOROOT/bin:$VSCODE_FOLDER
