@@ -79,14 +79,14 @@ function truncate_docker_logs()
     # $1 is containerID which can be retrieved via docker ps --no-trunc
     # actually see the host filesystem that logs are saved
     # For more info: https://github.com/justincormack/nsenter1
-    docker run -it --rm --privileged --pid=host alpine:edge nsenter -t 1 -m -u -n -i sh -c "cd /var/lib/docker/containers/$1/; ls -alh | grep $1; echo Truncating logs...; truncate -s 0 $1-json.log; ls -alh | grep $1"
+    docker run -it --rm --privileged --platform=linux/aarch64 --pid=host alpine:edge nsenter -t 1 -m -u -n -i sh -c "cd /var/lib/docker/containers/$1/; ls -alh | grep $1; echo Truncating logs...; truncate -s 0 $1-json.log; ls -alh | grep $1"
 }
 
 function docker_vm_shell()
 {
     # On MacOS, Docker runs on a Linux VM. This container runs with the same
     # namespace of the VM and access the Linux host.
-    docker run -it --rm --privileged --pid=host alpine:edge nsenter -t 1 -m -u -n -i sh
+    docker run -it --rm --privileged --platform=linux/aarch64 --pid=host alpine:edge nsenter -t 1 -m -u -n -i sh
 }
 
 # lazyloaded commands to improve zsh startup time
