@@ -17,6 +17,8 @@ alias pe='pyenv'
 alias peg='pyenv global'
 alias d='docker'
 alias gbrecent='git branch --sort=-committerdate | head'
+alias m='make'
+alias gdc="git diff -- . ':(exclude)*.mod' ':(exclude)*.sum'" # git diff clever
 
 ZSH_THEME="supo"
 plugins=(git)
