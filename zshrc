@@ -1,5 +1,5 @@
 
-alias gt='git log --graph --oneline --all'
+alias glog='git log --graph --oneline --all'
 alias gr='cd $(git rev-parse --show-toplevel)' # cd to git root
 alias py='python'
 alias py3='python3'
@@ -110,3 +110,6 @@ bindkey '^[[3;5~' kill-word
 bindkey '^H' backward-kill-word
 
 cd $WORKDIR
+
+function b64e() { echo -n "$1" | base64; }
+function b64d() { echo -n "$1" | base64 -D; echo }
